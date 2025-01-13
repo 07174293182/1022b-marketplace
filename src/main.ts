@@ -32,18 +32,7 @@ app.get("/produtos",async(req,res)=>{
 app.post("/produtos",async(req,res)=>{
     try{
         const {id,nome,descricao,preco,imagem} = req.body
-<<<<<<< HEAD
 
-        const banco = new BancoMysql();
-
-        const sqlString = "INSERT INTO produtos VALUES (?,?,?,?,?)"
-        const parametros = [id,nome,descricao,preco,imagem]
-
-        const result
-
-        await banco.end()
-=======
-        
         const banco = new BancoMysql();
         
         const sqlString  = "INSERT INTO produtos VALUES (?,?,?,?,?)"
@@ -52,9 +41,8 @@ app.post("/produtos",async(req,res)=>{
         const result = await banco.query(sqlString,parametros)
         console.log(result)
         
-        await banco.end()
         
->>>>>>> 7e2022e835d6059393d43cb6134c199dc475838a
+        await banco.end()
         res.status(200).send(result)
     }catch(e){
         console.log(e)
@@ -62,6 +50,15 @@ app.post("/produtos",async(req,res)=>{
     }  
 })
 
+app.delete("/produtos/:id", (req,res)=>{
+    console.log("Tentando excluir o produto de id:", req.params.id)
+    res.send("Tentando excluir o ponto de id:"+req.params.id)
+})
+
+app.put("/produtos/:id", (req,res)=>{
+    console.log("Tentando alterar o produto de id:", req.params.id)
+    res.send("Tentando alterar o produto de id:"+req.params.id)
+})
 
 
 
